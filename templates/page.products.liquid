@@ -1,0 +1,50 @@
+{% comment %}
+    Page template: Products
+    This template displays two sections: Featured Products and About Us.
+{% endcomment %}
+
+<!-- Section 1: Featured Products -->
+<section class="featured-products">
+    <h2>Featured Products</h2>
+    <div class="product-grid">
+        {% for product in collections['frontpage'].products limit:4 %}
+            <div class="product-item">
+                <a href="{{ product.url }}">
+                    <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+                    <h3>{{ product.title }}</h3>
+                    <p>{{ product.price | money }}</p>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Section 2: About Us -->
+<section class="about-us">
+    <h2>About Us</h2>
+    <p>
+        Welcome to our shop! We offer a curated selection of products to meet your needs.
+        Browse our featured items above or explore our full catalog for more options.
+    </p>
+</section>
+
+<style>
+.featured-products, .about-us {
+    margin-bottom: 40px;
+}
+.product-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.product-item {
+    border: 1px solid #eee;
+    padding: 16px;
+    width: 200px;
+    text-align: center;
+}
+.product-item img {
+    max-width: 100%;
+    height: auto;
+}
+</style>
